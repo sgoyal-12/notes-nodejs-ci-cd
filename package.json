@@ -1,0 +1,21 @@
+{
+  "name": "notes-nodejs-ci-cd",
+  "version": "1.0.0",
+  "description": "Simple Notes app with Node.js, Docker, Jenkins CI/CD",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.19.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "supertest": "^6.3.4"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  }
+}
