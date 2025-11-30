@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = 'dockerhub-cred'
-        DOCKER_IMAGE = 'sgoyal-12/notes-nodejs-ci-cd'
+        DOCKER_IMAGE = 'shubhamgoyal1205/notes-nodejs-ci-cd'
         CONTAINER_NAME = 'notes-app'
     }
 
