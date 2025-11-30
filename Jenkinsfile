@@ -2,28 +2,22 @@ pipeline {
     agent any
 
     environment {
-        DOCKERHUB_CREDENTIALS = 'dockerhub-cred'
-        DOCKER_IMAGE = 'shubhamgoyal1205/notes-nodejs-ci-cd'
-        CONTAINER_NAME = 'notes-app'
+        DOCKERHUB_CREDENTIALS = 'dockerhub-cred'  // 🔹 Must match Jenkins credentials ID
+        DOCKER_IMAGE = 'shubhamgoyal1205/notes-nodejs-ci-cd'  // 🔹 Docker Hub username fixed
+        CONTAINER_NAME = 'notes-app'  // 🔸 custom container name
     }
 
     stages {
         stage('Checkout') {
-            steps {
-                checkout scm
-            }
+            steps { checkout scm }
         }
 
         stage('Install Dependencies') {
-            steps {
-                sh 'npm install'
-            }
+            steps { sh 'npm install' }
         }
 
         stage('Run Tests') {
-            steps {
-                sh 'npm test'
-            }
+            steps { sh 'npm test' }
         }
 
         stage('Build Docker Image') {
@@ -36,7 +30,7 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 withCredentials([usernamePassword(
-                    credentialsId: DOCKERHUB_CREDENTIALS,
+                    credentialsId: DOCKERHUB_CREDENTIALS,  // 🔹 MUST match your Jenkins credentials ID
                     usernameVariable: 'DOCKER_USER',
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
@@ -58,11 +52,7 @@ pipeline {
     }
 
     post {
-        success {
-            echo "✅ Build & deploy successful!"
-        }
-        failure {
-            echo "❌ Build or tests failed."
-        }
+        success { echo "🚀 Build & Deploy Successful!" }
+        failure { echo "❌ Build Failed!" }
     }
 }
